@@ -14,17 +14,25 @@ install
 ===========
 Copy the data sources, unzipped in the avis-xml folder then:
 
-  npm install
+    npm install
 
-  coffee createCollectionAvis.coffee
-  coffee import.coffee
+    coffee createCollectionAvis.coffee
+    coffee import.coffee
 
 extra
 ===========
-A json dump for mongoDB is available at : XXX
-
+A json dump for mongoDB is available [here](http://pages.clibre.uqam.ca/seao/avis.json.gz)
 You can import it using [mongoimport](http://docs.mongodb.org/manual/reference/program/mongoimport/)
 
-future work
+csv
 ==========
-I'm converting the database into an easy to use CVS so that the data can be more accessible.
+A csv dump is available [here](http://pages.clibre.uqam.ca/seao/avis.csv.gz)
+
+In order to reproduce this file, make sure you have imported your data in your mongoDB using the import.coffee script, and then run:
+    coffee convertCSV.coffee >avis.csv
+
+The script produces the CSV in the standard input, so you can just redirect it to some file.
+
+Since there are nested objects (fournisseurs.fournisseur), I decided to duplicate lines in order to flatten the structure. So for one avis, you have one line per fournisseur.
+
+
